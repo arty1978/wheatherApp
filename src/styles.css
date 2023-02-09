@@ -158,28 +158,57 @@ i {
   font-weight: bold;
 }
 section {
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
   background-color: var(--shadow-light);
   border-radius: 20px;
-  padding: 1em;
+  box-shadow: 10px 10px 10px var(--shadow-dark);
+  height: 80vh;
   color: var(--white);
 }
-tbody {
-  text-align: center;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+
+table {
+  padding-top: 20px;
+  margin: auto;
 }
+
+.table-container {
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 0 10px;
+}
+
 th {
-  padding-bottom: 0.5em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* text-align: left; */
+  padding-bottom: 1em;
+  padding: 0 auto;
 }
-tr {
-  display: flex;
-  justify-items: center;
-  justify-content: inherit;
+thead tr th.start {
+  text-align: left;
 }
-td {
-  margin: 5px;
+
+tbody tr td.start {
+  padding-right: 1em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
 }
+
+tbody tr td.favButton {
+  width: 50px;
+  text-align: right;
+}
+.start:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  font-weight: bolder;
+}
+
 .favButton {
   background-color: red;
   border-radius: 20px;

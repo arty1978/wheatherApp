@@ -10,7 +10,7 @@
   <button (click)="favorite()">Add to favorites</button>
 </div>
 <div class="main">
-  <section>
+  <section class="table-container">
     <table>
       <thead>
         <th>Favorite Cities</th>
@@ -20,7 +20,7 @@
           <td class="start">
             {{ i }}
           </td>
-          <td class="favButton end" (dblclick)="removeFav(i)">delete</td>
+          <td class="favButton" (dblclick)="removeFav(i)">delete</td>
         </tr>
       </tbody>
     </table>

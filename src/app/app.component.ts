@@ -76,7 +76,7 @@ export class AppComponent implements OnInit {
       for (let i = 0; i <= this.favorites.length; i++) {
         if (this.favorites[i] === cityName) this.favorites.splice(i, 1);
       }
-      if (this.favorites.length > 10) {
+      if (this.favorites.length > 17) {
         alert('You have reached the maximum number of favorite cities');
       } else {
         this.favorites.push(cityName);
