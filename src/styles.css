@@ -1,6 +1,6 @@
 :root {
-  --blue-1: #11a1a1;
-  --blue-2: #21a1a1;
+  --greeny-1: #11a1a1;
+  --greeny-2: #21a1a1;
   --yellow-1: #fac742;
   --white: #fff;
   --grey-1: #ededed;
@@ -19,17 +19,21 @@ body {
   font-size: 16px;
   width: 100%;
   height: 100vh;
-  background-color: var(--blue-1);
+  background-color: var(--greeny-1);
 
   display: flex;
   justify-content: center; /*centering content horisontaly */
   align-items: center; /* centering items vertically*/
 }
-
+.main {
+  display: flex;
+  justify-content: center; /*centering content horisontaly */
+  align-items: center; /* centering items vertically*/
+}
 .container {
   width: 400px;
   height: 80vh;
-  background-color: var(--blue-2);
+  background-color: var(--greeny-2);
   border-radius: 20px;
   box-shadow: 10px 10px 10px var(--shadow-dark);
 }
@@ -138,6 +142,9 @@ i {
 .search {
   margin-bottom: 1em;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .search input {
   background-color: var(--shadow-light);
@@ -149,6 +156,61 @@ i {
   font-size: 1em;
   text-align: center;
   font-weight: bold;
+}
+section {
+  background-color: var(--shadow-light);
+  border-radius: 20px;
+  padding: 1em;
+  color: var(--white);
+}
+tbody {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+th {
+  padding-bottom: 0.5em;
+}
+tr {
+  display: flex;
+  justify-items: center;
+  justify-content: inherit;
+}
+td {
+  margin: 5px;
+}
+.favButton {
+  background-color: red;
+  border-radius: 20px;
+  padding: 0.5em;
+  border: none;
+  outline: none;
+  color: var(--white);
+  font-size: 0.75em;
+  text-align: center;
+  font-weight: bold;
+}
+.favButton:hover {
+  cursor: pointer;
+  color: var(--shadow-dark);
+  background-color: var(--yellow-1);
+}
+button {
+  background-color: var(--shadow-light);
+  border-radius: 20px;
+  padding: 1em;
+  border: none;
+  outline: none;
+  color: var(--white);
+  font-size: 1em;
+  text-align: center;
+  font-weight: bold;
+}
+button:hover {
+  cursor: pointer;
+  color: var(--shadow-dark);
+  background-color: var(--yellow-1);
 }
 
 .credits {

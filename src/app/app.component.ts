@@ -1,4 +1,4 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { WeatherService } from './services/weather.service';
 import { Root } from './models/weather.interface';
@@ -15,49 +15,84 @@ export class AppComponent implements OnInit {
     private weatherService: WeatherService
   ) {}
 
-  imgName: string;
+  // image: string;
   weatherData: Root;
   cityName = 'Rishon LeZiyyon';
-  alt: String;
-  image: String;
+  alt: string;
+  image: string;
+  favorites: string[] = [];
 
   ngOnInit(): void {
     this.getWeather(this.cityName);
     this.cityName = '';
-    this.imgName = '';
-    this.changePic();
+    const favFromlcStorage = localStorage.getItem('favorites');
+    if (favFromlcStorage) {
+      this.favorites = JSON.parse(favFromlcStorage);
+    }
+    localStorage.setItem('favorites', JSON.stringify(this.favorites));
   }
-  submit() {
+  add(event?: Event) {
+    if (event) {
+      event.preventDefault();
+    }
     this.getWeather(this.cityName);
     this.cityName = '';
   }
-  private getWeather(city: string) {
+  public getWeather(city: string) {
     this.weatherService.getWeatherData(city).subscribe({
       next: (res) => {
         this.weatherData = res;
+        this.changePic();
+
         console.log(this.weatherData);
-        console.log(this.weatherData.weather[0].main, '!!!');
-        console.log(this.imgName);
       },
     });
   }
   changePic() {
     if (this.weatherData.weather[0].main === 'Rain') {
-      this.imgName = 'rain';
+      this.image = 'rain';
       this.alt = 'Rain image';
-    }
-    if (this.weatherData.weather[0].main === 'Clear') {
-      this.imgName = 'sunny';
+    } else if (this.weatherData.weather[0].main === 'Clear') {
+      this.image = 'sunny';
       this.alt = 'sun image';
-    }
-    if (this.weatherData.weather[0].main === 'Snow') {
-      this.imgName = 'snow';
+    } else if (this.weatherData.weather[0].main === 'Snow') {
+      this.image = 'snow';
       this.alt = 'snow image';
-    }
-    if (this.weatherData.weather[0].main === 'Clouds') {
-      this.imgName = 'Rain';
+    } else if (this.weatherData.weather[0].main === 'Clouds') {
+      this.image = 'cloudy';
       this.alt = 'clouds image';
     }
-    this.image = `../assets/${this.imgName}.jpg`;
+    console.log(this.image);
+  }
+
+  favorite() {
+    const cityName = this.cityName;
+    this.getWeather(cityName);
+    const favFromlcStorage = localStorage.getItem('favorites');
+    if (favFromlcStorage) {
+      this.favorites = JSON.parse(favFromlcStorage);
+      // this.favorites?.sort((a, b) => (a > b ? 1 : 1));
+
+      for (let i = 0; i <= this.favorites.length; i++) {
+        if (this.favorites[i] === cityName) this.favorites.splice(i, 1);
+      }
+      if (this.favorites.length > 10) {
+        alert('You have reached the maximum number of favorite cities');
+      } else {
+        this.favorites.push(cityName);
+      }
+
+      localStorage.setItem('favorites', JSON.stringify(this.favorites));
+    }
+    this.cityName = '';
+  }
+  removeFav(item: string) {
+    for (let i = 0; i <= this.favorites.length; i++) {
+      if (this.favorites[i] === item) {
+        this.favorites.splice(i, 1);
+        localStorage.setItem('favorites', JSON.stringify(this.favorites));
+        break;
+      }
+    }
   }
 }
