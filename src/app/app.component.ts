@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { WeatherService } from './services/weather.service';
 import { Root } from './models/weather.interface';
+import { CitiesService } from './services/cities.service';
+import { Main } from './models/city.interface';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +14,12 @@ import { Root } from './models/weather.interface';
 export class AppComponent implements OnInit {
   constructor(
     private decimalPipe: DecimalPipe,
-    private weatherService: WeatherService
+    private weatherService: WeatherService,
+    private citiesService: CitiesService
   ) {}
 
   // image: string;
+  citiesData: Main;
   weatherData: Root;
   cityName = 'Rishon LeZiyyon';
   alt: string;
@@ -23,6 +27,9 @@ export class AppComponent implements OnInit {
   favorites: string[] = [];
 
   ngOnInit(): void {
+    const cityDb = this.citiesService.getCitiesData();
+    console.log(cityDb);
+
     this.getWeather(this.cityName);
     this.cityName = '';
     const favFromlcStorage = localStorage.getItem('favorites');
@@ -71,7 +78,6 @@ export class AppComponent implements OnInit {
     const favFromlcStorage = localStorage.getItem('favorites');
     if (favFromlcStorage) {
       this.favorites = JSON.parse(favFromlcStorage);
-      // this.favorites?.sort((a, b) => (a > b ? 1 : 1));
 
       for (let i = 0; i <= this.favorites.length; i++) {
         if (this.favorites[i] === cityName) this.favorites.splice(i, 1);
