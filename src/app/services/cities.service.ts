@@ -9,7 +9,7 @@ import { Main } from '../models/city.interface';
 })
 export class CitiesService {
   constructor(private http: HttpClient) {}
-  getCitiesData(): Observable<Main> {
+  getCitiesData(city: string): Observable<Main> {
     return this.http.get<Main>(environment.cityApiBaseUrl, {
       headers: new HttpHeaders()
         .set(environment.xRapidAPIHostName, environment.xRapidAPIHost)

@@ -1,6 +1,10 @@
 <div class="search">
   <form #form="ngForm" (submit)="add($event)">
+    <!-- [options]="options" -->
     <input
+      ngx-google-places-autocomplete
+      #placeREf="ngx-places"
+      (onAddressChange)="handleAddressChange($event)"
       type="text"
       placeholder="Enter City Name"
       name="city"

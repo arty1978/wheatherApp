@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { WeatherService } from './services/weather.service';
 import { Root } from './models/weather.interface';
-import { CitiesService } from './services/cities.service';
-import { Main } from './models/city.interface';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -14,22 +13,26 @@ import { Main } from './models/city.interface';
 export class AppComponent implements OnInit {
   constructor(
     private decimalPipe: DecimalPipe,
-    private weatherService: WeatherService,
-    private citiesService: CitiesService
+    private weatherService: WeatherService
   ) {}
 
-  // image: string;
-  citiesData: Main;
   weatherData: Root;
   cityName = 'Rishon LeZiyyon';
   alt: string;
   image: string;
   favorites: string[] = [];
+  // formatedAddress = '';
+  // options = {
+  //   componentRestrictions: {
+  //     country: ['AU'],
+  //   },
+  // };
 
+  public handleAddressChange(address: any) {
+    this.cityName = address.formatted_address;
+    console.log(this.cityName);
+  }
   ngOnInit(): void {
-    const cityDb = this.citiesService.getCitiesData();
-    console.log(cityDb);
-
     this.getWeather(this.cityName);
     this.cityName = '';
     const favFromlcStorage = localStorage.getItem('favorites');
@@ -50,8 +53,6 @@ export class AppComponent implements OnInit {
       next: (res) => {
         this.weatherData = res;
         this.changePic();
-
-        console.log(this.weatherData);
       },
     });
   }
