@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { WeatherService } from './services/weather.service';
 import { Root } from './models/weather.interface';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -21,12 +20,6 @@ export class AppComponent implements OnInit {
   alt: string;
   image: string;
   favorites: string[] = [];
-  // formatedAddress = '';
-  // options = {
-  //   componentRestrictions: {
-  //     country: ['AU'],
-  //   },
-  // };
 
   public handleAddressChange(address: any) {
     this.cityName = address.formatted_address;
