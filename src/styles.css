@@ -109,11 +109,6 @@ body {
   flex-direction: row;
 }
 
-.last {
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .info-block-label {
   width: 50%;
   display: flex;
@@ -157,7 +152,6 @@ i {
   font-weight: bold;
 }
 section {
-  /* display: flex; */
   justify-content: center;
   align-items: center;
   background-color: var(--shadow-light);
@@ -182,15 +176,15 @@ th {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  /* text-align: left; */
   padding-bottom: 1em;
   padding: 0 auto;
 }
-thead tr th.start {
+thead tr th.cell {
   text-align: left;
 }
 
-tbody tr td.start {
+tbody tr td.cell {
+  font-size: 0.9em;
   padding-right: 1em;
   white-space: nowrap;
   overflow: hidden;
@@ -202,9 +196,9 @@ tbody tr td.favButton {
   width: 50px;
   text-align: right;
 }
-.start:hover {
+.cell:hover {
   cursor: pointer;
-  transform: scale(1.1);
+  transform: scale(1.05);
   font-weight: bolder;
 }
 

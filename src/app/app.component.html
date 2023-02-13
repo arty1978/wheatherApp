@@ -21,7 +21,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let i of favorites.sort()" (click)="this.getWeather(i)">
-          <td class="start">
+          <td class="cell">
             {{ i }}
           </td>
           <td class="favButton" (dblclick)="removeFav(i)">delete</td>
