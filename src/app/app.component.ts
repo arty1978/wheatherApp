@@ -20,11 +20,8 @@ export class AppComponent implements OnInit {
   alt: string;
   image: string;
   favorites: string[] = [];
+  event: undefined;
 
-  public handleAddressChange(address: any) {
-    this.cityName = address.formatted_address;
-    console.log(this.cityName);
-  }
   ngOnInit(): void {
     this.getWeather(this.cityName);
     this.cityName = '';
@@ -34,11 +31,11 @@ export class AppComponent implements OnInit {
     }
     localStorage.setItem('favorites', JSON.stringify(this.favorites));
   }
-  add(event?: Event) {
-    if (event) {
-      event.preventDefault();
-    }
-    this.getWeather(this.cityName);
+  public handleAddressChange(address: any) {
+    this.cityName = address.formatted_address;
+  }
+  add(cityName: string) {
+    this.getWeather(cityName);
     this.cityName = '';
   }
   public getWeather(city: string) {
@@ -63,11 +60,9 @@ export class AppComponent implements OnInit {
       this.image = 'cloudy';
       this.alt = 'clouds image';
     }
-    console.log(this.image);
   }
 
-  favorite() {
-    const cityName = this.cityName;
+  favorite(cityName: string) {
     this.getWeather(cityName);
     const favFromlcStorage = localStorage.getItem('favorites');
     if (favFromlcStorage) {

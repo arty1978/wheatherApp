@@ -1,6 +1,6 @@
 <div class="search">
-  <form #form="ngForm" (submit)="add($event)">
-    <!-- [options]="options" -->
+  <form>
+    <button (click)="add(cityName)">Get Weather</button>
     <input
       ngx-google-places-autocomplete
       #placeREf="ngx-places"
@@ -11,7 +11,7 @@
       [(ngModel)]="cityName"
     />
   </form>
-  <button (click)="favorite()">Add to favorites</button>
+  <button (click)="favorite(cityName)">Add to favorites</button>
 </div>
 <div class="main">
   <section class="table-container">
